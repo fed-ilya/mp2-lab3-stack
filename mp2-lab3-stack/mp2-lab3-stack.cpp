@@ -2,12 +2,10 @@
 //
 
 #include <iostream>
-
-/*
-Написана реализация класса TStack
-*/
+#include "TStack.h"
 
 int main()
 {
+    TStack<int> st;
     std::cout << "Hello World!\n";
 }

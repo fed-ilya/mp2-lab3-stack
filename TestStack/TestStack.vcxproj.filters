@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mp2-lab3-stack.cpp">
+    <ClCompile Include="gtest-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TCalculator.cpp">
+    <ClCompile Include="test_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mp2-lab3-stack\TCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TStack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TCalculator.h">
+    <ClInclude Include="gtest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
