@@ -4,3 +4,7 @@ TCalculator::TCalculator()
 {
 
 }
+
+void TCalculator::ToPostfix()
+{
+}
