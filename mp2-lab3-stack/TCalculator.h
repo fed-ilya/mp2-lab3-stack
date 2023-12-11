@@ -10,8 +10,11 @@ class TCalculator
 	string infix, postfix;
 	int prior(char op);
 public:
-	TCalculator();
+	TCalculator(string str = "1 + 2");
 	~TCalculator();
+	void set_infix(string str);
+	string get_infix();
+	string get_postfix();
 	double CalcPostfix();
 	void ToPostfix();
 	double Calc();

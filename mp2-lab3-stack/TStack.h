@@ -14,7 +14,7 @@ class TStack
 	int CurrInd;
 public:
 	TStack(int _MaxSize = 10) {
-		if (_MaxSize >= 0) {
+		if (_MaxSize > 0) {
 			MaxSize = _MaxSize;
 			pMem = new T[MaxSize];
 			CurrInd = -1;
@@ -46,8 +46,8 @@ public:
 			for (int i = 0; i < MaxSize; i++) {
 				pMem[i] = st.pMem[i];
 			}
-			return *this;
 		}
+		return *this;
 	};
 
 	void print() {

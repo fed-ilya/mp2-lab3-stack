@@ -1,11 +1,25 @@
 #include "TCalculator.h"
 
-TCalculator::TCalculator() {
-	cout << "123";
+TCalculator::TCalculator(string str){
+	infix = str;
+	ToPostfix();
+	postfix = "";
 }
 
 TCalculator::~TCalculator() {
 	cout << "321";
+}
+
+void TCalculator::set_infix(string str) {
+	infix = str;
+}
+
+string TCalculator::get_infix() {
+	return infix;
+}
+
+string TCalculator::get_postfix() {
+	return postfix;
 }
 
 int TCalculator::prior(char op) {
@@ -51,8 +65,8 @@ void TCalculator::ToPostfix() {
 				el = oper.pop();
 			}
 		}
-		if ((str[i] == '+') || (str[i] == '-') || (str[i] == '*') || (str[i] == '/') || (str[i] == '^')) {
-			char el = oper.pop();
+		else if ((str[i] == '+') || (str[i] == '-') || (str[i] == '*') || (str[i] == '/') || (str[i] == '^')) {
+			char el = oper.top(); //top- а не pop
 			while (prior(el) >= prior(str[i])) {
 				postfix += el;
 				el = oper.pop();
