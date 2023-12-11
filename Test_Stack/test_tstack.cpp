@@ -1,6 +1,4 @@
 #include "../mp2-lab3-stack/TStack.h"
-#include "../mp2-lab3-stack/TCalculator.h"
-
 
 #include "gtest.h"
 
@@ -9,13 +7,12 @@ TEST(TStack, can_create_stack_with_positive_size)
     ASSERT_NO_THROW(TStack<int> bf);
 }
 
-TEST(TCalculator, can_create_calculator)
+/*
+TEST(TBitField, can_create_bitfield_with_positive_length)
 {
-    ASSERT_NO_THROW(TCalculator calc);
+  ASSERT_NO_THROW(TBitField bf(3));
 }
 
-
-/*
 TEST(TBitField, can_get_length)
 {
   TBitField bf(3);

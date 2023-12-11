@@ -14,7 +14,7 @@ class TStack
 	int CurrInd;
 public:
 	TStack(int _MaxSize = 10) {
-		if (_MaxSize <= 0) {
+		if (_MaxSize >= 0) {
 			MaxSize = _MaxSize;
 			pMem = new T[MaxSize];
 			CurrInd = -1;
@@ -52,7 +52,7 @@ public:
 
 	void print() {
 		for (int i = 0; i < MaxSize; i++) {
-			cout << pMem[i];
+			cout << pMem[i] << endl;
 		}
 	};
 
@@ -83,10 +83,10 @@ public:
 		return pMem[CurrInd];
 	};
 
-	void clear() { CurrInd = -1; }
+	void clear() { CurrInd = -1; };
 
 	bool proverka_skob(string str) {
-		TStack<T> s(20);
+		TStack<char> s(20);
 		int res = 0;
 		for (int i = 0; i < str.size(); i++) {
 			if (str[i] == '(') s.push(str[i]);
@@ -101,6 +101,6 @@ public:
 		if (res == 0) return true;
 		else if (res == 1) throw "Ћишн€€ ')'";
 		else throw "Ћишн€€ '('";
-	}
+	};
 };
 
