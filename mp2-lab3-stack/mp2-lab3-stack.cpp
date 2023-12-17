@@ -12,6 +12,7 @@ int main()
     TStack<int> st;
     string str;
     cin >> str;
-    TCalculator Cal;
-    cout << Cal.get_infix() << " " << Cal.get_postfix();
+    TCalculator Cal(str);
+    cout << Cal.get_infix() << " " << Cal.get_postfix() << endl;
+    cout << Cal.Calc();
 }

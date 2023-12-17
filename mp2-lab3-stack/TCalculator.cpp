@@ -1,13 +1,9 @@
 #include "TCalculator.h"
+#include "TStack.h"
 
 TCalculator::TCalculator(string str){
 	infix = str;
 	ToPostfix();
-	postfix = "";
-}
-
-TCalculator::~TCalculator() {
-	cout << "321";
 }
 
 void TCalculator::set_infix(string str) {
@@ -67,10 +63,16 @@ void TCalculator::ToPostfix() {
 		}
 		else if ((str[i] == '+') || (str[i] == '-') || (str[i] == '*') || (str[i] == '/') || (str[i] == '^')) {
 			char el = oper.top(); //top- а не pop
+			//postfix += ' ';
 			while (prior(el) >= prior(str[i])) {
 				postfix += el;
 				el = oper.pop();
 			}
+			oper.push(str[i]);
+		}
+		else if (str[i] == '.') {
+			if ((str[i - 1] < '0') || (str[i - 1] > '9')) { postfix += '0'; postfix += str[i]; }
+			else postfix += str[i];
 		}
 	}
 }
@@ -78,7 +80,10 @@ void TCalculator::ToPostfix() {
 double TCalculator::Calc() {
 	oper.clear(); ch.clear();
 	string str = '(' + infix + ')';
+	str = infix_0(str);
+	//string str = '(' + postfix + ')';
 	for (int i = 0; i < str.size(); i++) {
+		
 		if (str[i] == '(') oper.push(str[i]);
 		else if (str[i] == ')') {
 			char el = oper.pop();
@@ -119,3 +124,33 @@ double TCalculator::Calc() {
 	}
 	return ch.pop();
 }
+
+string TCalculator::infix_0(string str) {
+	string res = "";
+	for (int i = 0; i < str.size(); ++i) {
+		if (str[i] == '.' && !isdigit(str[i-1])) res += '0';
+		res += str[i];
+	}
+	return res;
+}
+
+bool TCalculator::proverka_skob(string str) {
+	TStack<char> s(30);
+	int res = 0;
+	for (int i = 0; i < str.size(); i++) {
+		if (str[i] == '(') s.push(str[i]);
+		else {
+			if (str[i] == ')') {
+				if (!s.empty()) s.pop();
+				else res = 1;
+			}
+		}
+	}
+	if (!s.empty()) res = 2;
+	if (res == 0) return true;
+	else return false;
+	/*
+	else if (res == 1) throw "Ћишн€€ ')'";
+	else throw "Ћишн€€ '('";
+	*/
+};

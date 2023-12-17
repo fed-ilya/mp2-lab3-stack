@@ -40,9 +40,9 @@ public:
 			if (MaxSize != st.MaxSize) {
 				delete[] pMem;
 				MaxSize = st.MaxSize;
-				CurrInd = st.CurrInd;
 				pMem = new T[MaxSize];
 			}
+			CurrInd = st.CurrInd;
 			for (int i = 0; i < MaxSize; i++) {
 				pMem[i] = st.pMem[i];
 			}
@@ -61,7 +61,7 @@ public:
 		else return false;
 	};
 
-	bool fool() {
+	bool full() {
 		if (CurrInd == MaxSize - 1) return true;
 		else return false;
 	};
@@ -84,23 +84,5 @@ public:
 	};
 
 	void clear() { CurrInd = -1; };
-
-	bool proverka_skob(string str) {
-		TStack<char> s(20);
-		int res = 0;
-		for (int i = 0; i < str.size(); i++) {
-			if (str[i] == '(') s.push(str[i]);
-			else {
-				if (str[i] == ')') {
-					if (!s.empty()) s.pop();
-					else res = 1;
-				}
-			}
-		}
-		if (!s.empty()) res = 2;
-		if (res == 0) return true;
-		else if (res == 1) throw "Ћишн€€ ')'";
-		else throw "Ћишн€€ '('";
-	};
 };
 
