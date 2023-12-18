@@ -64,9 +64,10 @@ void TCalculator::ToPostfix() {
 		else if ((str[i] == '+') || (str[i] == '-') || (str[i] == '*') || (str[i] == '/') || (str[i] == '^')) {
 			char el = oper.top(); //top- а не pop
 			//postfix += ' ';
-			while (prior(el) >= prior(str[i])) {
-				postfix += el;
+			while (prior(el) >= prior(str[i])) { // >=
 				el = oper.pop();
+				postfix += el;
+				el = oper.top();
 			}
 			oper.push(str[i]);
 		}

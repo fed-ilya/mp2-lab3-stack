@@ -92,3 +92,13 @@ TEST(TCalculator, cant_calculate_if_the_number_of_brackets_is_incorrect)
     ASSERT_ANY_THROW(check = calc.CalcPostfix());
     EXPECT_NE(17, check);
 }
+
+TEST(TCalculator, can_calculate_long_virazhenie) {
+    std::string a = "2*2+(5*2)-(5.56+4^3)";
+
+
+    TCalculator calc(a);
+    double check;
+    ASSERT_NO_THROW(check = calc.Calc());
+    EXPECT_EQ(-55.56, check);
+}
