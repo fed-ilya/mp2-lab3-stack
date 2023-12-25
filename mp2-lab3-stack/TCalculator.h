@@ -5,8 +5,8 @@ using namespace std;
 
 class TCalculator
 {
-	TStack<double> ch;
-	TStack<char> oper;
+	TLStack<double> ch;
+	TLStack<char> oper;
 	string infix, postfix;
 	int prior(char op);
 public:

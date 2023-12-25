@@ -2,22 +2,21 @@
 
 #include "gtest.h"
 
-TEST(TStack, can_create_stack)
+TEST(TLStack, can_create_stack)
 {
-    ASSERT_NO_THROW(TStack<int> st);
+    ASSERT_NO_THROW(TLStack<int> st);
 }
 
-TEST(TStack, can_create_stack_with_positive_size)
+TEST(TLStack, can_get_length)
 {
-    ASSERT_NO_THROW(TStack<int> st(10));
+    TLStack<int> st;
+
+    int k = st.count();
+    EXPECT_EQ(0, k);
 }
 
-TEST(TStack, throws_when_create_stack_with_negative_size) {
-    ASSERT_ANY_THROW(TStack<int> st(-1));
-}
-
-TEST(TStack, stack_can_push_and_pop) {
-    TStack<int> st(5);
+TEST(TLStack, stack_can_push_and_pop) {
+    TLStack<int> st;
     int a1 = 1;
     int a2 = 2;
     int a3 = 3;
@@ -33,87 +32,68 @@ TEST(TStack, stack_can_push_and_pop) {
     EXPECT_EQ(a3, b1);
 }
 
-TEST(TStack, throws_when_use_push_on_overflow_stack)
+TEST(TLStack, throws_when_use_pop_on_empty_stack)
 {
-    TStack<int> st(3);
-    st.push(1);
-    st.push(1);
-    st.push(1);
-    ASSERT_ANY_THROW(st.push(1));
-}
-
-TEST(TStack, throws_when_use_pop_on_empty_stack)
-{
-    TStack<int> st(3);
+    TLStack<int> st;
     ASSERT_ANY_THROW(st.pop());
 }
 
-TEST(TStack, throws_when_use_top_on_empty_stack)
+TEST(TLStack, throws_when_use_top_on_empty_stack)
 {
-    TStack<int> st(3);
+    TLStack<int> st;
     ASSERT_ANY_THROW(st.top());
 }
 
-TEST(TStack, can_return_top_element) {
-    TStack<int> st(3);
+TEST(TLStack, can_return_top_element) {
+    TLStack<int> st;
     st.push(3);
     ASSERT_EQ(3, st.top());
 }
 
-TEST(TStack, full_stack_is_full)
+TEST(TLStack, new_stack_is_empty)
 {
-    TStack<int> st(3);
-    st.push(1);
-    st.push(1);
-    st.push(1);
-    EXPECT_EQ(true, st.full());
-}
-
-TEST(TStack, return_false_when_use_full_on_not_full_stack)
-{
-    TStack<int> st(3);
-    st.push(1);
-    st.push(1);
-
-    EXPECT_EQ(false, st.full());
-}
-
-TEST(TStack, new_stack_is_empty)
-{
-    TStack<int> st(3);
+    TLStack<int> st;
     ASSERT_NO_THROW(true, st.empty);
 }
 
-TEST(TStack, return_false_when_use_empty_on_not_empty_stack)
+TEST(TLStack, return_false_when_use_empty_on_not_empty_stack)
 {
-    TStack<int> st(3);
+    TLStack<int> st;
     st.push(1);
     st.push(1);
     EXPECT_EQ(false, st.empty());
 }
 
-TEST(TStack, can_assign_stack_of_equal_size)
+TEST(TLStack, can_assign_stack_of_equal_size)
 {
-    const int size = 2;
-    TStack<int> st1(size), st2(size);
+    const int size = 3;
+    TLStack<int> st1, st2;
     for (int i = 0; i < size; i++)
     {
         st1.push(i);
     }
+    for (int i = 0; i < size; i++)
+    {
+        st2.push(-i);
+    }
     st2 = st1;
-
+    EXPECT_EQ(2, st2.pop());
     EXPECT_EQ(1, st2.pop());
-    EXPECT_EQ(0, st2.pop());
 }
 
-TEST(TStack, assign_operator_changes_stack_size)
+TEST(TLStack, assign_operator_changes_stack_size)
 {
     const int size1 = 2, size2 = 5;
-    TStack<int> st1(size1), st2(size2);
+    TLStack<int> st1, st2;
     for (int i = 0; i < size1; i++)
     {
         st1.push(i);
     }
+    for (int i = 0; i < size2; i++)
+    {
+        st2.push(i);
+    }
+
     st2 = st1;
 
     int k = 0;
@@ -125,13 +105,17 @@ TEST(TStack, assign_operator_changes_stack_size)
     EXPECT_EQ(2, k);
 }
 
-TEST(TStack, can_assign_stack_of_non_equal_size)
+TEST(TLStack, can_assign_stack_of_non_equal_size)
 {
     const int size1 = 2, size2 = 5;
-    TStack<int> st1(size1), st2(size2);
+    TLStack<int> st1, st2;
     for (int i = 0; i < size1; i++)
     {
         st1.push(i);
+    }
+    for (int i = 0; i < size2; i++)
+    {
+        st2.push(i);
     }
     st2 = st1;
 

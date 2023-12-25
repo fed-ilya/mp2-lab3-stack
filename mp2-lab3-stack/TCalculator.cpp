@@ -1,7 +1,7 @@
 #include "TCalculator.h"
 #include "TStack.h"
 
-TCalculator::TCalculator(string str){
+TCalculator::TCalculator(string str) {
 	infix = str;
 	ToPostfix();
 }
@@ -64,9 +64,10 @@ void TCalculator::ToPostfix() {
 		else if ((str[i] == '+') || (str[i] == '-') || (str[i] == '*') || (str[i] == '/') || (str[i] == '^')) {
 			char el = oper.top(); //top- а не pop
 			//postfix += ' ';
-			while (prior(el) >= prior(str[i])) {
-				postfix += el;
+			while (prior(el) >= prior(str[i])) { 
 				el = oper.pop();
+				postfix += el;
+				el = oper.top();
 			}
 			oper.push(str[i]);
 		}
@@ -83,7 +84,7 @@ double TCalculator::Calc() {
 	str = infix_0(str);
 	//string str = '(' + postfix + ')';
 	for (int i = 0; i < str.size(); i++) {
-		
+
 		if (str[i] == '(') oper.push(str[i]);
 		else if (str[i] == ')') {
 			char el = oper.pop();
@@ -128,14 +129,14 @@ double TCalculator::Calc() {
 string TCalculator::infix_0(string str) {
 	string res = "";
 	for (int i = 0; i < str.size(); ++i) {
-		if (str[i] == '.' && !isdigit(str[i-1])) res += '0';
+		if (str[i] == '.' && !isdigit(str[i - 1])) res += '0';
 		res += str[i];
 	}
 	return res;
 }
 
 bool TCalculator::proverka_skob(string str) {
-	TStack<char> s(30);
+	TLStack<char> s;
 	int res = 0;
 	for (int i = 0; i < str.size(); i++) {
 		if (str[i] == '(') s.push(str[i]);

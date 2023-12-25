@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    TStack<int> st;
+    TLStack<int> st;
     string str;
     cin >> str;
     TCalculator Cal(str);
