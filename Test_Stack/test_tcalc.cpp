@@ -73,13 +73,14 @@ TEST(TCalculator, check_expression_return_false_when_the_number_of_brackets_is_i
 
 TEST(TCalculator, can_calculate_if_the_number_of_brackets_is_correct)
 {
-    std::string a = "2+(3*5)";
+    std::string a = "4^3*2.3-2+(3*5)";
 
 
     TCalculator calc(a);
     double check;
-    ASSERT_NO_THROW(check = calc.CalcPostfix());
-    EXPECT_EQ(17, check);
+    ASSERT_NO_THROW(check = calc.Calc());
+    cout << check;
+    EXPECT_EQ(160.2, check);
 }
 
 TEST(TCalculator, cant_calculate_if_the_number_of_brackets_is_incorrect)
